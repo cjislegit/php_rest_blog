@@ -3,7 +3,7 @@
 class Database
 {
 //DB Params
-    private $host = "locahost";
+    private $host = "localhost";
     private $db = "blog";
     private $username = "root";
     private $password = "123456";
