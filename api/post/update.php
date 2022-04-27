@@ -22,7 +22,7 @@ $data = json_decode(file_get_contents("php://input"));
 //Set ID to Update
 $post->id = $data->id;
 
-$post->title = $data->tilte;
+$post->title = $data->title;
 $post->body = $data->body;
 $post->author = $data->author;
 $post->category_id = $data->category_id;
