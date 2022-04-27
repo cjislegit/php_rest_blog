@@ -12,7 +12,7 @@ $database = new Database();
 $db = $database->connect();
 
 //Instantiate Blog Post Object
-$post = new POST($db);
+$post = new Post($db);
 
 //Blog Post Query
 $result = $post->read();
