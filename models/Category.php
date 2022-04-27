@@ -16,4 +16,25 @@ class Category
     {
         $this->conn = $db;
     }
+
+    //Get Categories
+    public function read()
+    {
+        //Create Query
+        $query = "SELECT
+            id,
+            name
+        FROM
+            $this->table
+        ORDER BY
+            created_at DESC";
+
+        //Prepate Statement
+        $stmt = $this->conn->prepare($query);
+
+        //Execute Query
+        $stmt->execute();
+
+        return $stmt;
+    }
 }
