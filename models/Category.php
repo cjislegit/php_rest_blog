@@ -38,4 +38,33 @@ class Category
 
         return $stmt;
     }
+
+    //Get Single Category
+    public function read_single()
+    {
+        //Create Query
+        $query = "SELECT
+            id,
+            name,
+            created_at
+        FROM
+            $this->table
+        WHERE
+            id = :id";
+
+        //Prepare Statment
+        $stmt = $this->conn->prepare($query);
+
+        //Bind Data
+        $stmt->bindParam(":id", $this->id);
+
+        //Execute Query
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            //Print Error
+            printf("Error: %s.\n", $stmt->error);
+            return false;
+        }
+    }
 }
