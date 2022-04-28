@@ -59,12 +59,11 @@ class Category
         $stmt->bindParam(":id", $this->id);
 
         //Execute Query
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            //Print Error
-            printf("Error: %s.\n", $stmt->error);
-            return false;
-        }
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //Set Properties
+        $this->name = $row["name"];
     }
 }
