@@ -66,4 +66,33 @@ class Category
         //Set Properties
         $this->name = $row["name"];
     }
+
+//Create Category
+    public function create()
+    {
+        //Create Query
+        $query = "INSERT INTO
+            $this->table
+            SET
+                name = :name";
+
+        //Prepare Statment
+        $stmt = $this->conn->prepare($query);
+
+        //Clean Data
+        $this->name = htmlspecialchars($this->name);
+
+        //Bind Data
+        $stmt->bindParam(":name", $this->name);
+
+        //Execute Query
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            //Print Error
+            printf("Error: %s.\n", $stmt->error);
+            return false;
+        }
+
+    }
 }
