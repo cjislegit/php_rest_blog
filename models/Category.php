@@ -95,4 +95,34 @@ class Category
         }
 
     }
+
+    //Update Category
+    public function update()
+    {
+        $query = "UPDATE
+            $this->table
+                SET
+                    name = :name
+                WHERE
+                    id = :id";
+
+        //Prepare Statement
+        $stmt = $this->conn->prepare($query);
+
+        //Clean Data
+        $this->name = htmlspecialchars(strip_tags($this->name));
+
+        //Bind Data
+        $stmt->bindParam(":name", $this->name);
+
+        //Execute Query
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            //Print Error
+            printf("Error: %s.\n", $stmt->error);
+            return false;
+        }
+
+    }
 }
