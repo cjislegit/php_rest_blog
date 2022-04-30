@@ -127,4 +127,30 @@ class Category
         }
 
     }
+
+    //Delete Category
+    public function delete()
+    {
+        //Create Query
+        $query = "DELETE FROM $this->table WHERE id=:id";
+
+        //Prepare Statement
+        $stmt = $this->conn->prepare($query);
+
+        //Clean Data
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        //Bind Data
+        $stmt->bindParam(":id", $this->id);
+
+        //Execute Query
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            //Print Error
+            printf("Error: %s\n", $stmt->error);
+            return false;
+        }
+
+    }
 }
