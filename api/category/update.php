@@ -17,7 +17,7 @@ $db = $database->connect();
 $category = new Category($db);
 
 //Get Raw Category Data
-$data = json_decode(file_get_contents("php:://input"));
+$data = json_decode(file_get_contents("php://input"));
 
 //Set ID to Update
 $category->id = $data->id;
@@ -25,7 +25,7 @@ $category->id = $data->id;
 $category->name = $data->name;
 
 //Create Post
-if ($post->update()) {
+if ($category->update()) {
     echo json_encode(
         array("message" => "Post Updated")
     );

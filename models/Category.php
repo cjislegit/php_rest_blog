@@ -111,9 +111,11 @@ class Category
 
         //Clean Data
         $this->name = htmlspecialchars(strip_tags($this->name));
+        $this->id = htmlspecialchars(strip_tags($this->id));
 
         //Bind Data
         $stmt->bindParam(":name", $this->name);
+        $stmt->bindParam(":id", $this->id);
 
         //Execute Query
         if ($stmt->execute()) {
